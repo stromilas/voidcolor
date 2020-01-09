@@ -1,14 +1,37 @@
 describe('voidcolor', () => {
   const voidcolor = require('../voidcolor');
 
-
-
   it('transforms real color to simulated color', () => {
+    expect(voidcolor.transform({r:50, g:100, b:150}, voidcolor.protanopiaFilter)).toEqual({r:94, g:94, b:150});
+    expect(voidcolor.transform({r:50, g:100, b:150}, voidcolor.tritanopiaFilter)).toEqual({r:24, g:108, b:108});
+    expect(voidcolor.transform({r:50, g:100, b:150}, voidcolor.deuteranopiaFilter)).toEqual({r:87, g:87, b:151});
+
+    expect(voidcolor.transform({r:0, g:0, b:0}, voidcolor.protanopiaFilter)).toEqual({r:0, g:0, b:0});
+    expect(voidcolor.transform({r:0, g:0, b:0}, voidcolor.tritanopiaFilter)).toEqual({r:0, g:0, b:0});
+    expect(voidcolor.transform({r:0, g:0, b:0}, voidcolor.deuteranopiaFilter)).toEqual({r:0, g:0, b:0});
+
+    expect(voidcolor.transform({r:255, g:255, b:255}, voidcolor.protanopiaFilter)).toEqual({r:255, g:255, b:255});
+    expect(voidcolor.transform({r:255, g:255, b:255}, voidcolor.tritanopiaFilter)).toEqual({r:255, g:255, b:255});
+    expect(voidcolor.transform({r:255, g:255, b:255}, voidcolor.deuteranopiaFilter)).toEqual({r:255, g:255, b:255});
 
   })
 
   it('dots two matrices', () => {
-    
+    const A = [[1, 2],
+               [3, 4]];
+    const B = [[2, 0],
+               [1, 2]];
+    const X = [[1, 2, 3],
+               [4, 5, 6]];
+    const ABexpected = [[4,  4],
+                        [10, 8]];
+    const AXexpected = [[9,  12, 15],
+                        [19, 26, 33]];
+    expect(voidcolor.dot).toThrow();
+    expect(voidcolor.dot(A, B)).toEqual(ABexpected);
+    expect(voidcolor.dot(A, X)).toEqual(AXexpected);
+    expect(() => { voidcolor.dot(X, A); }).toThrow();
+
   })
 
   it('converts standard column vector to linear', () => {
@@ -29,7 +52,7 @@ describe('voidcolor', () => {
     const vectorValid = voidcolor.linearToStandardRGB([[0], [1], [0.5]]);
     expect(vectorValid).toEqual([[0], [255], [188]]);
     expect(voidcolor.linearToStandardRGB).toThrow();
-    expect(() => { voidcolor.linearToStandardRGB([[-0.1], [1.1], [2]]); }).toThrow();
+    expect(() => { voidcolor.linearToStandardRGB([[-0.2], [1.2], [2]]); }).toThrow();
     expect(() => { voidcolor.linearToStandardRGB([[0], [1], [0.5], [0]]); }).toThrow();
     expect(() => { voidcolor.linearToStandardRGB([[0], [1]]); }).toThrow();
     expect(() => { voidcolor.linearToStandardRGB([0], [1], [0.5]); }).toThrow();
