@@ -3,12 +3,12 @@
 class Voidcolor {
   constructor() {
     // ** Conversions to different color codings * /
-    this.lmsFilter =    [[0.31399022, 0.63951294, 0.04649755],
-            		          [0.15537241, 0.75789446, 0.08670142],
-            		          [0.01775239, 0.10944209, 0.87256922]];
-    this.rgbFilter =    [[ 5.47221206, -4.6419601,   0.16963708],
-                          [-1.1252419,   2.29317094, -0.1678952],
-                          [ 0.02980165, -0.19318073,  1.16364789]];
+    this.LMS =  [[0.31399022, 0.63951294, 0.04649755],
+                 [0.15537241, 0.75789446, 0.08670142],
+                 [0.01775239, 0.10944209, 0.87256922]];
+    this.RGB =  [[ 5.47221206, -4.6419601,   0.16963708],
+                 [-1.1252419,   2.29317094, -0.1678952],
+                 [ 0.02980165, -0.19318073,  1.16364789]];
 
     // ** Static filters * /
     this.protanopiaFilter =   [[0, 1.05118294, -0.05116099],
@@ -18,14 +18,14 @@ class Voidcolor {
                                [0.9513092, 0, 0.04866992],
                                [0,         0, 1]];
     this.tritanopiaFilter =   [[ 1,          0,          0],
-       					               [ 0,          1,          0],
+                               [ 0,          1,          0],
                                [-0.86744736, 1.86727089, 0]];
   }
 
   // ** Static functions * /
 
   protanopia(r, g, b) {
-  	return this.transform({r, g, b}, this.protanopiaFilter);
+    return this.transform({r, g, b}, this.protanopiaFilter);
   }
 
   deuteranopia(r, g, b) {
@@ -57,7 +57,7 @@ class Voidcolor {
 
   tritanomaly(r, g, b, ratio) {
     const tritanomaly = [[ 1,                  0,                  0],
-	                       [ 0,                  1,                  0],
+                         [ 0,                  1,                  0],
                          [-0.86744736 * ratio, 1.86727089 * ratio, 1 - (1*ratio)]];
     return this.transform({r, g, b}, tritanomaly);
   }
@@ -74,9 +74,9 @@ class Voidcolor {
   transform(color, filter) {
     let vector = this.toColumnVector(color);
     let rgb = this.standardToLinearRGB(vector);
-    let lms = this.dot(this.lmsFilter, rgb);
+    let lms = this.dot(this.LMS, rgb);
     let lmsFiltered = this.dot(filter, lms);
-    let rgbFiltered = this.dot(this.rgbFilter, lmsFiltered);
+    let rgbFiltered = this.dot(this.RGB, lmsFiltered);
     vector = this.linearToStandardRGB(rgbFiltered);
     return { r: vector[0][0], g: vector[1][0], b: vector[2][0] }
   }
@@ -99,7 +99,7 @@ class Voidcolor {
       for(let c = 0; c < Bn; c++) {
         matrix[r][c] = 0;
         for(let i = 0; i < An; i++) {
-            matrix[r][c] += A[r][i] * B[i][c];
+          matrix[r][c] += A[r][i] * B[i][c];
         }
       }
     }
@@ -113,7 +113,7 @@ class Voidcolor {
     * @return {array} - 1x3 column vector of r, g, b values
     */
   toColumnVector(color) {
-  	return [[color.r], [color.g], [color.b]];
+    return [[color.r], [color.g], [color.b]];
   }
 
   /**
@@ -125,10 +125,10 @@ class Voidcolor {
   standardToLinearRGB(columnVector) {
     if(!Array.isArray(columnVector)) throw new Error('expected array');
     if(columnVector.length != 3) throw new Error('expected 3 entries in column vector');
-  	for(let i = 0; i < 3; i++) {
-  		columnVector[i][0] = this.standardToLinearChannel(columnVector[i][0]);
-  	}
-  	return columnVector;
+    for(let i = 0; i < 3; i++) {
+      columnVector[i][0] = this.standardToLinearChannel(columnVector[i][0]);
+    }
+    return columnVector;
   }
 
   /**
@@ -140,10 +140,10 @@ class Voidcolor {
   linearToStandardRGB(columnVector) {
     if(!Array.isArray(columnVector)) throw new Error('expected array');
     if(columnVector.length != 3) throw new Error('expected 3 entries in column vector');
-   	for(let i = 0; i < 3; i++) {
-  		columnVector[i][0] = this.linearToStandardChannel(columnVector[i][0]);
-  	}
-  	return columnVector;
+     for(let i = 0; i < 3; i++) {
+      columnVector[i][0] = this.linearToStandardChannel(columnVector[i][0]);
+    }
+    return columnVector;
   }
 
   /**
