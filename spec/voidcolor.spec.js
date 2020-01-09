@@ -5,15 +5,17 @@ describe('voidcolor', () => {
     expect(voidcolor.transform({r:50, g:100, b:150}, voidcolor.protanopiaFilter)).toEqual({r:94, g:94, b:150});
     expect(voidcolor.transform({r:50, g:100, b:150}, voidcolor.tritanopiaFilter)).toEqual({r:24, g:108, b:108});
     expect(voidcolor.transform({r:50, g:100, b:150}, voidcolor.deuteranopiaFilter)).toEqual({r:87, g:87, b:151});
+    expect(voidcolor.transform({r:50, g:100, b:150}, voidcolor.achromatopsiaFilter)).toEqual({r:103, g:103, b:103});
 
     expect(voidcolor.transform({r:0, g:0, b:0}, voidcolor.protanopiaFilter)).toEqual({r:0, g:0, b:0});
     expect(voidcolor.transform({r:0, g:0, b:0}, voidcolor.tritanopiaFilter)).toEqual({r:0, g:0, b:0});
     expect(voidcolor.transform({r:0, g:0, b:0}, voidcolor.deuteranopiaFilter)).toEqual({r:0, g:0, b:0});
+    expect(voidcolor.transform({r:0, g:0, b:0}, voidcolor.achromatopsiaFilter)).toEqual({r:0, g:0, b:0});
 
     expect(voidcolor.transform({r:255, g:255, b:255}, voidcolor.protanopiaFilter)).toEqual({r:255, g:255, b:255});
     expect(voidcolor.transform({r:255, g:255, b:255}, voidcolor.tritanopiaFilter)).toEqual({r:255, g:255, b:255});
     expect(voidcolor.transform({r:255, g:255, b:255}, voidcolor.deuteranopiaFilter)).toEqual({r:255, g:255, b:255});
-
+    expect(voidcolor.transform({r:255, g:255, b:255}, voidcolor.achromatopsiaFilter)).toEqual({r:255, g:255, b:255});
   })
 
   it('dots two matrices', () => {
