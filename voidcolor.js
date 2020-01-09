@@ -11,15 +11,18 @@ class Voidcolor {
                  [ 0.02980165, -0.19318073,  1.16364789]];
 
     // ** Static filters * /
-    this.protanopiaFilter =   [[0, 1.05118294, -0.05116099],
-                               [0, 1,           0],
-                               [0, 0,           1]];
-    this.deuteranopiaFilter = [[1,         0, 0],
-                               [0.9513092, 0, 0.04866992],
-                               [0,         0, 1]];
-    this.tritanopiaFilter =   [[ 1,          0,          0],
-                               [ 0,          1,          0],
-                               [-0.86744736, 1.86727089, 0]];
+    this.protanopiaFilter =    [[0, 1.05118294, -0.05116099],
+                                [0, 1,           0],
+                                [0, 0,           1]];
+    this.deuteranopiaFilter =  [[1,         0, 0],
+                                [0.9513092, 0, 0.04866992],
+                                [0,         0, 1]];
+    this.tritanopiaFilter =    [[ 1,          0,          0],
+                                [ 0,          1,          0],
+                                [-0.86744736, 1.86727089, 0]];
+    this.achromatopsiaFilter = [[0.212656, 0.715158, 0.072186],
+                                [0.212656, 0.715158, 0.072186],
+                                [0.212656, 0.715158, 0.072186]];
   }
 
   // ** Static functions * /
@@ -34,6 +37,10 @@ class Voidcolor {
 
   tritanopia(r, g, b) {
     return this.transform({r, g, b}, this.tritanopiaFilter);
+  }
+
+  achromatopsia(r, g, b) {
+    return this.transform({r, g, b}, this.achromatopsiaFilter);
   }
 
   // ** Dynamic functions * /
