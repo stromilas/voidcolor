@@ -1,4 +1,4 @@
-![voidcolor](/assets/voidcolor_logo.png)
+![voidcolor](https://raw.githubusercontent.com/stromjust/voidcolor/master/assets/voidcolor_logo.png)
 
 Voidcolor is a Node.js package created for simulating various color blindness types.
 
@@ -54,4 +54,4 @@ console.log(color.b);
 \
 __Color rainbows generated using voidcolor__  
 _Anomaly severity set at 50%_
-![voidcolor](/assets/colors.PNG)
+![voidcolor](https://raw.githubusercontent.com/stromjust/voidcolor/master/assets/colors.PNG)
