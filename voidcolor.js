@@ -1,5 +1,3 @@
-// Credit for matrix values: https://ixora.io/projects/colorblindness/color-blindness-simulation-research/
-
 class Voidcolor {
   constructor() {
     // ** Conversions to different color codings * /
@@ -11,6 +9,8 @@ class Voidcolor {
                  [ 0.02980165, -0.19318073,  1.16364789]];
 
     // ** Static filters * /
+    // Credit for static filters values:
+    // https://ixora.io/projects/colorblindness/color-blindness-simulation-research/
     this.protanopiaFilter =    [[0, 1.05118294, -0.05116099],
                                 [0, 1,           0],
                                 [0, 0,           1]];
@@ -45,8 +45,8 @@ class Voidcolor {
 
   // ** Dynamic functions * /
   //
-  // dynamic filters are defined each time they're called,
-  // due to having better tested performance while being being thread/async safe
+  // Dynamic filters are defined each time they're called,
+  // due to having better tested performance while being being thread/async safe.
 
   protanomaly(r, g, b, ratio) {
     const protanomaly = [[1 - (1*ratio), 1.05118294 * ratio, -0.05116099 * ratio],
