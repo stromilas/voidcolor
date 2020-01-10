@@ -4,7 +4,6 @@ Voidcolor is a Node.js package created for simulating various color blindness ty
 
 
 #### Usage:
-\
 Install package
 ```
 npm install --save voidcolor
