@@ -2,7 +2,7 @@
 
 Voidcolor is a Node.js package created for simulating various color blindness types.
 
-![npm](https://img.shields.io/npm/v/voidcolor)
+[![npm](https://img.shields.io/npm/v/voidcolor)](https://www.npmjs.com/package/voidcolor)
 
 #### Usage:
 Install package
@@ -41,7 +41,7 @@ voidcolor.tritanomaly(r, g, b, severity);
 _Note: the return is always {r, g, b} object_
 
 \
-Example
+Example code
 ```javascript
 const voidcolor = require('voidcolor');
 
@@ -53,6 +53,6 @@ console.log(color.b);
 ```
 
 \
-__Color rainbows generated using voidcolor__  
+__Colors generated using voidcolor__  
 _Anomaly severity set at 50%_
 ![voidcolor](https://raw.githubusercontent.com/stromjust/voidcolor/master/assets/colors.PNG)
