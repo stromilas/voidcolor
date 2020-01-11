@@ -4,7 +4,6 @@ Voidcolor is a Node.js package created for simulating various color blindness ty
 
 ![npm](https://img.shields.io/npm/v/voidcolor)
 
-
 #### Usage:
 Install package
 ```
