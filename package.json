@@ -1,6 +1,6 @@
 {
   "name": "voidcolor",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Provides functions to convert normal colors to the colors that individuals with various types of colorblindness might see.",
   "main": "voidcolor.js",
   "scripts": {
@@ -13,5 +13,11 @@
   },
   "dependencies": {
     "npm": "^6.13.6"
-  }
+  },
+  "keywords": [
+    "color",
+    "colorblind",
+    "accessibility",
+    "simulation"
+  ]
 }
